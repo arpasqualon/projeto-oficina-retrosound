@@ -1,0 +1,33 @@
+/* SCRIPT DE UPDATES E DELETES - PROJETO RETROSOUND */
+
+-- --- COMANDOS DE UPDATE ---
+
+-- UPDATE 1: O técnico concluiu o reparo da Ordem 1.
+UPDATE ORDEM_DE_SERVICO
+SET status_servico = 'Concluído - Aguardando Retirada'
+WHERE id_ordem_servico = 1;
+
+-- UPDATE 2: O cliente 'Maria Oliveira' (ID 2) mudou de telefone.
+UPDATE CLIENTE
+SET telefone = '(41) 98888-5555'
+WHERE id_cliente = 2;
+
+-- UPDATE 3: Recebemos mais 10 unidades da 'Válvula 12AX7' (ID 1).
+UPDATE PECA
+SET quantidade_estoque = quantidade_estoque + 10
+WHERE id_peca = 1;
+
+
+-- --- COMANDOS DE DELETE ---
+
+-- DELETE 1: Remover uma peça que foi adicionada por engano na Ordem 1.
+DELETE FROM ITENS_DA_ORDEM
+WHERE id_ordem_servico = 1 AND id_peca = 2; -- Remove o 'Capacitor 100uF' da Ordem 1
+
+-- DELETE 2: Deletar o fornecedor "teste" (ID 3), que não possui peças associadas.
+DELETE FROM FORNECEDOR
+WHERE id_fornecedor = 3;
+
+-- DELETE 3: Deletar o cliente 'Carlos Pereira' (ID 3), que não possui equipamentos cadastrados.
+DELETE FROM CLIENTE
+WHERE id_cliente = 3;
